@@ -16,7 +16,7 @@ export default function Home() {
 
           {/* Hero Section */}
           <HeroSection 
-            imageSrc="/images/hero-portrait.jpg" 
+            imageSrc="/charles_pic.jpg" 
             imageAlt="Charles Lai - Filmmaker and Photographer" 
           />
 
