@@ -9,8 +9,7 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfa
 
 export const metadata: Metadata = {
   title: 'Charles Lai | Filmmaker & Photographer',
-  description: 'Filmmaker and photographer creating and sharing stories through the visual arts. Photography and videography for brands, businesses, destinations, and events.',
-  generator: 'v0.app',
+  description: 'I’m Charles, a filmmaker and photographer creating and sharing stories through the visual arts.',
   icons: {
     icon: [
       {
