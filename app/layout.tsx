@@ -1,15 +1,14 @@
 import React from "react"
 import type { Metadata } from 'next'
-import { Inter, Playfair_Display } from 'next/font/google'
+import { Arimo} from 'next/font/google'
 // import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
+const arimo = Arimo({subsets:["latin"], variable: "--font-arimo"})
 
 export const metadata: Metadata = {
   title: 'Charles Lai | Filmmaker & Photographer',
-  description: 'I’m Charles, a filmmaker and photographer creating and sharing stories through the visual arts.',
+  description: 'Filmmaker and photographer creating and sharing stories through the visual arts.',
   icons: {
     icon: [
       {
@@ -36,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
+      <body className={`${arimo.variable} ${arimo.variable} font-sans antialiased`}>
         {children}
         {/* <Analytics /> */}
       </body>
