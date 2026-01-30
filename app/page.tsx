@@ -14,12 +14,17 @@ const topPhotos = [
   { src: "/homepage-top/IMG_0051.1.jpg", alt: "pic 8" },
   { src: "/homepage-top/IMG_0143.1.jpg", alt: "pic 9" },
   { src: "/homepage-top/img-014.jpg", alt: "pic 10" },
-  { src: "/homepage-top/img066.jpg", alt: "pic 11" },
-  { src: "/homepage-top/img20250627_13105483-2.jpg", alt: "pic 12" },
-  { src: "/homepage-top/img441-3.jpg", alt: "pic 13" },
-  { src: "/homepage-top/img804-1.jpg", alt: "pic 14" },
-  { src: "/homepage-top/img812.jpg", alt: "pic 15" }
+  // { src: "/homepage-top/img066.jpg", alt: "pic 11" },
+  // { src: "/homepage-top/img20250627_13105483-2.jpg", alt: "pic 12" },
+  // { src: "/homepage-top/img441-3.jpg", alt: "pic 13" },
+  // { src: "/homepage-top/img804-1.jpg", alt: "pic 14" },
+  // { src: "/homepage-top/img812.jpg", alt: "pic 15" }
 ]
+
+const bottomPhotos =[
+
+]
+
 
 export default function Home() {
   return (
@@ -28,7 +33,7 @@ export default function Home() {
       <main className="pt-20">
         <div className="max-w-7xl mx-auto px-6">
           {/* Top Photo Grid - 10 photos */}
-          <section id="portfolio" className="py-8 md:py-12">
+          <section className="py-8 md:py-12">
             <PhotoGrid photos={topPhotos} />
           </section>
 
@@ -42,7 +47,7 @@ export default function Home() {
           <ServicesSection />
 
           {/* Bottom Photo Grid - 10 photos */}
-          <section className="py-8 md:py-12 border-t border-border">
+          <section className="py-8 md:py-12">
           </section>
 
           {/* Footer */}
