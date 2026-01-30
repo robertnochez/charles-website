@@ -22,7 +22,36 @@ const topPhotos = [
 ]
 
 const bottomPhotos =[
-
+  { src: "/homepage-bottom/036A1984.jpg", alt: "pic 1" },
+  { src: "/homepage-bottom/036A2313.jpg", alt: "pic 2" },
+  { src: "/homepage-bottom/036A2370.jpg", alt: "pic 3" },
+  { src: "/homepage-bottom/036A2509.jpg", alt: "pic 4" },
+  { src: "/homepage-bottom/036A2609.jpg", alt: "pic 5" },
+  { src: "/homepage-bottom/036A2941.jpg", alt: "pic 6" },
+  { src: "/homepage-bottom/036A4465.jpg", alt: "pic 7" },
+  { src: "/homepage-bottom/IMG_0016.1.jpg", alt: "pic 8" },
+  { src: "/homepage-bottom/IMG_0192.1.jpg", alt: "pic 9" },
+  { src: "/homepage-bottom/img_1157.jpg", alt: "pic 10" },
+  //{ src: "/homepage-bottom/img_1373.jpg", alt: "pic 11" },
+  { src: "/homepage-bottom/img_1518.jpg", alt: "pic 12" },
+  { src: "/homepage-bottom/img_1817.jpg", alt: "pic 13" },
+  { src: "/homepage-bottom/img_2154.jpg", alt: "pic 14" },
+  //{ src: "/homepage-bottom/img_2281.jpg", alt: "pic 15" },
+  { src: "/homepage-bottom/img_2349.jpg", alt: "pic 16" },
+  { src: "/homepage-bottom/IMG_9683.1.jpg", alt: "pic 17" },
+  { src: "/homepage-bottom/IMG_9974.jpg", alt: "pic 18" },
+  { src: "/homepage-bottom/img-061.jpg", alt: "pic 19" },
+  { src: "/homepage-bottom/img002.jpg", alt: "pic 20" },
+  { src: "/homepage-bottom/img113.jpg", alt: "pic 21" },
+  { src: "/homepage-bottom/img129.jpg", alt: "pic 22" },
+  { src: "/homepage-bottom/img20241229_0008-6.jpg", alt: "pic 23" },
+  { src: "/homepage-bottom/img20250620_13211647.jpg", alt: "pic 24" },
+  { src: "/homepage-bottom/img20250620_14171684.jpg", alt: "pic 25" },
+  { src: "/homepage-bottom/img20250620_16464202.jpg", alt: "pic 26" },
+  { src: "/homepage-bottom/img206.jpg", alt: "pic 27" },
+  { src: "/homepage-bottom/img275.jpg", alt: "pic 28" },
+  //{ src: "/homepage-bottom/img449-6.jpg", alt: "pic 29" },
+  //{ src: "/homepage-bottom/img815.jpg", alt: "pic 30" }
 ]
 
 
@@ -48,6 +77,7 @@ export default function Home() {
 
           {/* Bottom Photo Grid - 10 photos */}
           <section className="py-8 md:py-12">
+            <PhotoGrid photos={bottomPhotos} />
           </section>
 
           {/* Footer */}
