@@ -10,8 +10,8 @@ export function Navbar() {
   const navLinks = [
     { label: "About", href: "#about" },
     { label: "Portfolio", href: "#portfolio" },
-    { label: "Instagram", href: "https://instagram.com", external: true },
-    { label: "LinkedIn", href: "https://linkedin.com", external: true },
+    { label: "Instagram", href: "https://www.instagram.com/charleslaishoots/", external: true },
+    // { label: "LinkedIn", href: "https://linkedin.com", external: true },
   ]
 
   return (
