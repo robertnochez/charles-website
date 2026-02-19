@@ -8,11 +8,18 @@ export const metadata: Metadata = {
     "Photography portfolio by Charles Lai. Capturing bustling cities, quiet mountains, and fleeting moments of everyday life.",
 }
 
-// const rowOnePhotos = [
-// ]
+const rowOnePhotos = [
+  { src: "/covers/Cali.jpg", alt: "Cali" },
+  { src: "/covers/Cars.jpg", alt: "Cars" },
+  { src: "/covers/Japan.jpg", alt: "Japan" },
+  { src: "/covers/Outdoors.jpg", alt: "Outdoors" }
+]
 
-// const rowTwoPhotos = [
-// ]
+const rowTwoPhotos = [
+  { src: "/covers/SK.jpg", alt: "SK" },
+  { src: "/covers/Stills.jpg", alt: "Stills" },
+    { src: "/covers/Taiwan.jpg", alt: "Taiwan" }
+]
 
 function PortfolioRow({ photos }: { photos: { src: string; alt: string }[] }) {
   return (
@@ -48,8 +55,8 @@ export default function PortfolioPage() {
             </h1>
 
             <div className="flex flex-col gap-2 md:gap-3">
-              {/* <PortfolioRow photos={rowOnePhotos} />
-              <PortfolioRow photos={rowTwoPhotos} /> */}
+              <PortfolioRow photos={rowOnePhotos} />
+              <PortfolioRow photos={rowTwoPhotos} />
             </div>
           </section>
 
