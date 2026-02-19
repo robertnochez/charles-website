@@ -23,7 +23,9 @@ export default function AboutPage() {
                 </h1>
                 <div className="flex flex-col gap-6">
                   <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
-                    {"I'm a Chinese-American Filmmaker and Photographer born, raised, and based in California. I have a passion for storytelling and adventure. From capturing bustling cities to quiet snow-topped mountains, seas of people to hidden creatures, I hope to share these fleeting moments of everyday life."}
+                    I'm a Chinese-American Filmmaker and Photographer born, raised, and based in California. 
+                    I have a passion for storytelling and adventure. From capturing bustling cities to quiet snow-topped mountains, 
+                    seas of people to hidden creatures, I hope to share these fleeting moments of everyday life.
                   </p>
                   <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
                     Traveling and exploring the outdoors is a big part of how I
@@ -40,7 +42,7 @@ export default function AboutPage() {
               <div className="flex-1 w-full lg:max-w-[45%]">
                 <div className="relative aspect-[3/4] w-full overflow-hidden">
                   <Image
-                    src="/charles_pic.jpg"
+                    src="/charles_about.jpg"
                     alt="Charles Lai - Filmmaker and Photographer"
                     fill
                     className="object-cover"
