@@ -8,27 +8,11 @@ export const metadata: Metadata = {
     "Photography portfolio by Charles Lai. Capturing bustling cities, quiet mountains, and fleeting moments of everyday life.",
 }
 
-const rowOnePhotos = [
-  { src: "/images/portfolio-1.jpg", alt: "California coastline at sunset" },
-  { src: "/images/portfolio-2.jpg", alt: "Asian night market" },
-  { src: "/images/portfolio-3.jpg", alt: "Snow-capped mountain peak" },
-  { src: "/images/portfolio-4.jpg", alt: "Candid urban portrait" },
-  { src: "/images/portfolio-5.jpg", alt: "River through forest valley" },
-  { src: "/images/portfolio-6.jpg", alt: "Artisan coffee shop" },
-  { src: "/images/portfolio-7.jpg", alt: "Deer in misty forest" },
-  { src: "/images/portfolio-8.jpg", alt: "Outdoor festival at dusk" },
-]
+// const rowOnePhotos = [
+// ]
 
-const rowTwoPhotos = [
-  { src: "/images/portfolio-9.jpg", alt: "San Francisco skyline" },
-  { src: "/images/portfolio-10.jpg", alt: "Water droplets macro" },
-  { src: "/images/portfolio-11.jpg", alt: "Desert sand dunes" },
-  { src: "/images/portfolio-12.jpg", alt: "Film set behind the scenes" },
-  { src: "/images/portfolio-13.jpg", alt: "Coral reef underwater" },
-  { src: "/images/portfolio-14.jpg", alt: "Milky way night sky" },
-  { src: "/images/portfolio-15.jpg", alt: "Japanese temple garden" },
-  { src: "/images/portfolio-16.jpg", alt: "Surfer at sunrise" },
-]
+// const rowTwoPhotos = [
+// ]
 
 function PortfolioRow({ photos }: { photos: { src: string; alt: string }[] }) {
   return (
@@ -64,8 +48,8 @@ export default function PortfolioPage() {
             </h1>
 
             <div className="flex flex-col gap-2 md:gap-3">
-              <PortfolioRow photos={rowOnePhotos} />
-              <PortfolioRow photos={rowTwoPhotos} />
+              {/* <PortfolioRow photos={rowOnePhotos} />
+              <PortfolioRow photos={rowTwoPhotos} /> */}
             </div>
           </section>
 

@@ -8,8 +8,8 @@ export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const navLinks = [
-    { label: "About", href: "#about" },
-    { label: "Portfolio", href: "#portfolio" },
+    { label: "About", href: "/about" },
+    { label: "Portfolio", href: "/portfolio" },
     { label: "Instagram", href: "https://www.instagram.com/charleslaishoots/", external: true },
     // { label: "LinkedIn", href: "https://linkedin.com", external: true },
   ]
