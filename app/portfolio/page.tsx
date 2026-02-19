@@ -20,7 +20,8 @@ const rowOnePhotos = [
 const rowTwoPhotos = [
   { src: "/covers/SK.jpg", alt: "SK", title: "South Korea"},
   { src: "/covers/Stills.jpg", alt: "Stills", title: "Stills"},
-    { src: "/covers/Taiwan.jpg", alt: "Taiwan", title: "Taiwan"}
+  { src: "/covers/Taiwan.jpg", alt: "Taiwan", title: "Taiwan"},
+  { src: "/covers/Wildlife.jpg", alt: "Wildlife", title: "Wildlife"}
 ]
 
 function PortfolioRow({ photos }: { photos: { src: string; alt: string; title?: string }[] }) {
