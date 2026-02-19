@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/navbar"
 import Image from "next/image"
 import type { Metadata } from "next"
+import { title } from "process"
 
 export const metadata: Metadata = {
   title: "Photography | Charles Lai",
@@ -9,21 +10,21 @@ export const metadata: Metadata = {
 }
 
 const rowOnePhotos = [
-  { src: "/covers/Cali.jpg", alt: "Cali" },
-  { src: "/covers/Cars.jpg", alt: "Cars" },
-  { src: "/covers/Japan.jpg", alt: "Japan" },
-  { src: "/covers/Outdoors.jpg", alt: "Outdoors" }
+  { src: "/covers/Cali.jpg", alt: "Cali", title: "California"},
+  { src: "/covers/Cars.jpg", alt: "Cars", title: "Cars"},
+  { src: "/covers/Japan.jpg", alt: "Japan", title: "Japan"},
+  { src: "/covers/Outdoors.jpg", alt: "Outdoors", title: "Outdoors"}
 ]
 
 const rowTwoPhotos = [
-  { src: "/covers/SK.jpg", alt: "SK" },
-  { src: "/covers/Stills.jpg", alt: "Stills" },
-    { src: "/covers/Taiwan.jpg", alt: "Taiwan" }
+  { src: "/covers/SK.jpg", alt: "SK", title: "South Korea"},
+  { src: "/covers/Stills.jpg", alt: "Stills", title: "Stills"},
+    { src: "/covers/Taiwan.jpg", alt: "Taiwan", title: "Taiwan"}
 ]
 
-function PortfolioRow({ photos }: { photos: { src: string; alt: string }[] }) {
+function PortfolioRow({ photos }: { photos: { src: string; alt: string; title?: string }[] }) {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 md:gap-3">
+    <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-2 md:gap-3">
       {photos.map((photo) => (
         <div
           key={photo.src}
@@ -36,7 +37,16 @@ function PortfolioRow({ photos }: { photos: { src: string; alt: string }[] }) {
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 12.5vw"
           />
-          <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300" />
+
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-300" />
+
+          {/* Centered text */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <p className="text-white text-lg font-semibold text-center px-2">
+              {photo.title}
+            </p>
+          </div>
         </div>
       ))}
     </div>
