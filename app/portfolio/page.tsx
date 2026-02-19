@@ -72,7 +72,7 @@ export default function PortfolioPage() {
           </section>
 
           {/* Footer */}
-          < Footer />
+          <Footer />
         </div>
       </main>
     </>
