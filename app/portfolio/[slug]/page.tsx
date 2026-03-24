@@ -14,6 +14,8 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowLeft } from "lucide-react"
 
+export const dynamic = "force-dynamic"
+
 export function generateStaticParams() {
   return portfolioCategories.map((cat) => ({ slug: cat.slug }))
 }
@@ -41,14 +43,15 @@ export default async function PhotoPage({
   const cat = getCategoryBySlug(slug)
   if (!cat) notFound()
 
-  // Read all images from /public/media/<dir> at request time
-  const photos = getPhotosForCategory(cat.dir)
+  const photos = await getPhotosForCategory(cat.dir)
+  console.log("photos for", cat.dir, photos)
 
   const currentIndex = portfolioCategories.findIndex((c) => c.slug === slug)
   const prevCat = currentIndex > 0 ? portfolioCategories[currentIndex - 1] : null
-  const nextCat = currentIndex < portfolioCategories.length - 1
-    ? portfolioCategories[currentIndex + 1]
-    : null
+  const nextCat =
+    currentIndex < portfolioCategories.length - 1
+      ? portfolioCategories[currentIndex + 1]
+      : null
 
   return (
     <>
@@ -66,7 +69,7 @@ export default async function PhotoPage({
               Back to Portfolio
             </Link>
 
-            {/* Category header + prev/next */}
+            {/* Category header */}
             <div className="flex flex-col gap-2 mb-10">
               <p className="text-xs uppercase tracking-widest text-muted-foreground">
                 {cat.category}
@@ -87,7 +90,9 @@ export default async function PhotoPage({
                   >
                     &larr; {prevCat.title}
                   </Link>
-                ) : <span />}
+                ) : (
+                  <span />
+                )}
                 {nextCat ? (
                   <Link
                     href={`/portfolio/${nextCat.slug}`}
@@ -95,7 +100,9 @@ export default async function PhotoPage({
                   >
                     {nextCat.title} &rarr;
                   </Link>
-                ) : <span />}
+                ) : (
+                  <span />
+                )}
               </div>
             </div>
 
@@ -103,7 +110,10 @@ export default async function PhotoPage({
             {photos.length > 0 ? (
               <div className="columns-1 sm:columns-2 lg:columns-3 gap-2 md:gap-3 space-y-2 md:space-y-3 mb-16">
                 {photos.map((src) => (
-                  <div key={src} className="relative w-full overflow-hidden break-inside-avoid">
+                  <div
+                    key={src}
+                    className="relative w-full overflow-hidden break-inside-avoid"
+                  >
                     <Image
                       src={src}
                       alt={`${cat.title} photo`}
@@ -121,7 +131,7 @@ export default async function PhotoPage({
               </p>
             )}
 
-            {/* More photography grid */}
+            {/* More photography */}
             <div className="border-t border-border pt-12">
               <h2 className="font-serif text-2xl md:text-3xl tracking-tight text-foreground mb-8">
                 More Photography

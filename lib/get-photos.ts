@@ -1,20 +1,21 @@
-import fs from "fs"
-import path from "path"
+import { supabase } from "@/lib/supabase"
 
-const IMAGE_EXTENSIONS = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"])
+export async function getPhotosForCategory(dir: string): Promise<string[]> {
+  const { data, error } = await supabase.storage
+    .from("portfolio")
+    .list(dir, { sortBy: { column: "name", order: "asc" } })
 
-/**
- * Returns an array of public-relative URLs for every image in
- * /public/media/<dir>.  Safe to call from Server Components only.
- */
-export function getPhotosForCategory(dir: string): string[] {
-  const absDir = path.join(process.cwd(), "public", "media", dir)
+  if (error || !data) {
+    console.error("Supabase storage error:", error)
+    return []
+  }
 
-  if (!fs.existsSync(absDir)) return []
-
-  return fs
-    .readdirSync(absDir)
-    .filter((file) => IMAGE_EXTENSIONS.has(path.extname(file).toLowerCase()))
-    .sort()                                          // deterministic order
-    .map((file) => `/media/${dir}/${file}`)
+  return data
+    .filter((file) => file.id !== null)
+    .map((file) => {
+      const { data: { publicUrl } } = supabase.storage
+        .from("portfolio")
+        .getPublicUrl(`${dir}/${file.name}`)
+      return publicUrl
+    })
 }

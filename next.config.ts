@@ -1,7 +1,13 @@
-import type { NextConfig } from "next";
+// next.config.js
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "uwhjokhegcwnjcxiuvvd.supabase.co",
+      },
+    ],
+  },
+}
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
-
-export default nextConfig;
+module.exports = nextConfig
