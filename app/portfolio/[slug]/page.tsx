@@ -44,7 +44,7 @@ export default async function PhotoPage({
   if (!cat) notFound()
 
   const photos = await getPhotosForCategory(cat.dir)
-  console.log("photos for", cat.dir, photos)
+  // console.log("photos for", cat.dir, photos)
 
   const currentIndex = portfolioCategories.findIndex((c) => c.slug === slug)
   const prevCat = currentIndex > 0 ? portfolioCategories[currentIndex - 1] : null
