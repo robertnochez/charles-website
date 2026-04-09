@@ -1,7 +1,7 @@
 import React from "react"
 import type { Metadata } from 'next'
 import { Arimo} from 'next/font/google'
-// import { Analytics } from '@vercel/analytics/next'
+import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 const arimo = Arimo({subsets:["latin"], variable: "--font-arimo"})
@@ -37,7 +37,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${arimo.variable} ${arimo.variable} font-sans antialiased`}>
         {children}
-        {/* <Analytics /> */}
+        <Analytics />
       </body>
     </html>
   )
