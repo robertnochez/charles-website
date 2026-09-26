@@ -177,7 +177,7 @@ export default function VideosPage() {
               </div>
             </div>
 
-            {/* Video Counter */}
+            {/* Video Counter
             <div className="mt-6 flex items-center justify-between text-sm text-muted-foreground">
               <span>
                 {String(currentVideo + 1).padStart(2, "0")}
@@ -186,7 +186,7 @@ export default function VideosPage() {
               <span>
                 {String(videoContent.length).padStart(2, "0")}
               </span>
-            </div>
+            </div> */}
 
           </section>
 
