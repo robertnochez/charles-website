@@ -148,7 +148,7 @@ export function Navbar() {
                 <ul className="mt-3 ml-4 flex flex-col gap-3 border-l border-border pl-4">
                   <li>
                     <Link
-                      href="/portfolio/photography"
+                      href="/photography"
                       className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                       onClick={() => {
                         setIsMenuOpen(false)
@@ -161,7 +161,7 @@ export function Navbar() {
 
                   <li>
                     <Link
-                      href="/portfolio/videography"
+                      href="/videography"
                       className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                       onClick={() => {
                         setIsMenuOpen(false)
