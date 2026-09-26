@@ -1,10 +1,8 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
-
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const videoContent = [
@@ -41,17 +39,12 @@ const videoContent = [
 ]
 
 export default function VideosPage() {
-  const [mounted, setMounted] = useState(false)
   const [currentVideo, setCurrentVideo] = useState(0)
   const [transitioning, setTransitioning] = useState(false)
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
   const goToVideo = useCallback(
     (index: number) => {
-      if (transitioning) return
+      if (transitioning || index === currentVideo) return
 
       setTransitioning(true)
 
@@ -63,7 +56,7 @@ export default function VideosPage() {
         }, 100)
       }, 300)
     },
-    [transitioning],
+    [transitioning, currentVideo],
   )
 
   const nextVideo = useCallback(() => {
@@ -78,23 +71,24 @@ export default function VideosPage() {
     goToVideo(prevIndex)
   }, [currentVideo, goToVideo])
 
-  if (!mounted) {
-    return (
-      <>
-        <Navbar />
+  // Allow keyboard arrow navigation
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowLeft") {
+        prevVideo()
+      }
 
-        <main className="pt-20">
-          <div className="mx-auto max-w-[1400px] px-6">
-            <section className="py-16 md:py-24">
-              <div className="h-[70vh] bg-black" />
-            </section>
+      if (event.key === "ArrowRight") {
+        nextVideo()
+      }
+    }
 
-            <Footer />
-          </div>
-        </main>
-      </>
-    )
-  }
+    window.addEventListener("keydown", handleKeyDown)
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [prevVideo, nextVideo])
 
   const video = videoContent[currentVideo]
 
@@ -105,117 +99,95 @@ export default function VideosPage() {
       <main className="pt-20">
         <div className="mx-auto max-w-[1400px] px-6">
           <section className="py-16 md:py-24">
-            <h1 className="mb-12 font-serif text-4xl tracking-tight text-foreground md:text-5xl lg:text-6xl">
-              Videos
+
+            {/* Page Title */}
+            <h1 className="mb-16 font-serif text-4xl tracking-tight text-foreground md:text-5xl lg:text-6xl">
+              Videography
             </h1>
 
-            {/* Video Gallery */}
-            <div className="relative h-[70vh] min-h-[500px] w-full overflow-hidden bg-black">
-              {/* YouTube Video Background */}
-              <div className="absolute inset-0 h-full w-full overflow-hidden">
-                {video.youtubeId ? (
-                  <iframe
-                    key={video.id}
-                    className={`pointer-events-none absolute left-1/2 top-1/2 h-[56.25vw] min-h-full w-[177.78vh] min-w-full -translate-x-1/2 -translate-y-1/2 transition-opacity duration-500 ${
-                      transitioning ? "opacity-0" : "opacity-100"
-                    }`}
-                    src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${video.youtubeId}&controls=0&modestbranding=1&rel=0&playsinline=1`}
-                    title={video.title}
-                    allow="autoplay; encrypted-media"
-                  />
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center text-white">
-                    <p className="text-lg">
-                      Video coming soon
-                    </p>
-                  </div>
-                )}
+            {/* Video Title */}
+            <div
+              className={`mb-8 text-center transition-opacity duration-300 ${
+                transitioning ? "opacity-0" : "opacity-100"
+              }`}
+            >
+              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+                {video.title}
+              </h2>
 
-                {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-black/40" />
-              </div>
+              {video.description && (
+                <p className="mt-4 text-lg text-muted-foreground md:text-xl">
+                  {video.description}
+                </p>
+              )}
+            </div>
 
-              {/* Previous Button */}
+            {/* Video Player */}
+            <div className="relative w-full overflow-hidden bg-black">
               <div
-                onClick={prevVideo}
-                className="absolute left-4 top-1/2 z-20 -translate-y-1/2 cursor-pointer rounded-full bg-black/30 p-3 text-white transition-colors hover:bg-black/50"
-                aria-label="Previous video"
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    prevVideo()
-                  }
-                }}
-              >
-                <ChevronLeft className="h-8 w-8" />
-              </div>
-
-              {/* Next Button */}
-              <div
-                onClick={nextVideo}
-                className="absolute right-4 top-1/2 z-20 -translate-y-1/2 cursor-pointer rounded-full bg-black/30 p-3 text-white transition-colors hover:bg-black/50"
-                aria-label="Next video"
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    nextVideo()
-                  }
-                }}
-              >
-                <ChevronRight className="h-8 w-8" />
-              </div>
-
-              {/* Video Information */}
-              <div
-                className={`relative z-10 flex h-full items-center justify-center px-6 text-center text-white transition-opacity duration-500 ${
+                className={`relative aspect-video w-full transition-opacity duration-500 ${
                   transitioning ? "opacity-0" : "opacity-100"
                 }`}
               >
-                <div className="max-w-3xl">
-                  <h2 className="mb-6 text-5xl font-bold tracking-tight md:text-7xl">
-                    {video.title}
-                  </h2>
-
-                  {video.description && (
-                    <p className="text-xl md:text-2xl">
-                      {video.description}
-                    </p>
-                  )}
-                </div>
+                <iframe
+                  key={video.id}
+                  className="absolute inset-0 h-full w-full"
+                  src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1`}
+                  title={video.title}
+                  allow="autoplay; encrypted-media; picture-in-picture"
+                  allowFullScreen
+                />
               </div>
 
+              {/* Previous Button */}
+              <button
+                onClick={prevVideo}
+                className="absolute left-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/40 p-3 text-white transition-colors hover:bg-black/70"
+                aria-label="Previous video"
+              >
+                <ChevronLeft className="h-8 w-8" />
+              </button>
+
+              {/* Next Button */}
+              <button
+                onClick={nextVideo}
+                className="absolute right-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/40 p-3 text-white transition-colors hover:bg-black/70"
+                aria-label="Next video"
+              >
+                <ChevronRight className="h-8 w-8" />
+              </button>
+
               {/* Video Indicators */}
-              <div className="absolute bottom-8 left-0 right-0 z-20 flex justify-center space-x-2">
+              <div className="absolute bottom-5 left-0 right-0 z-20 flex justify-center gap-2">
                 {videoContent.map((videoItem, index) => (
-                  <div
+                  <button
                     key={videoItem.id}
-                    onClick={() => {
-                      if (index !== currentVideo) {
-                        goToVideo(index)
-                      }
-                    }}
-                    className={`h-2 w-8 cursor-pointer rounded-full transition-all ${
+                    onClick={() => goToVideo(index)}
+                    className={`h-2 rounded-full transition-all ${
                       currentVideo === index
-                        ? "bg-white"
-                        : "bg-white/40"
+                        ? "w-8 bg-white"
+                        : "w-6 bg-white/40 hover:bg-white/70"
                     }`}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(e) => {
-                      if (
-                        (e.key === "Enter" || e.key === " ") &&
-                        index !== currentVideo
-                      ) {
-                        goToVideo(index)
-                      }
-                    }}
-                    aria-label={`Go to video ${index + 1}`}
+                    aria-label={`Go to video ${index + 1}: ${videoItem.title}`}
+                    aria-current={
+                      currentVideo === index ? "true" : undefined
+                    }
                   />
                 ))}
               </div>
             </div>
+
+            {/* Video Counter */}
+            <div className="mt-6 flex items-center justify-between text-sm text-muted-foreground">
+              <span>
+                {String(currentVideo + 1).padStart(2, "0")}
+              </span>
+
+              <span>
+                {String(videoContent.length).padStart(2, "0")}
+              </span>
+            </div>
+
           </section>
 
           <Footer />
