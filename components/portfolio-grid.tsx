@@ -16,7 +16,7 @@ export function PortfolioRow({
       {categories.map((cat) => (
         <Link
           key={cat.slug}
-          href={`/portfolio/${cat.slug}`}
+          href={`/photography/${cat.slug}`}
           className={`relative aspect-square overflow-hidden group block ${
             activeSlug === cat.slug ? "ring-2 ring-foreground" : ""
           }`}

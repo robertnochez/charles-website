@@ -62,11 +62,11 @@ export default async function PhotoPage({
 
             {/* Back link */}
             <Link
-              href="/portfolio"
+              href="/photography"
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
             >
               <ArrowLeft className="w-4 h-4" />
-              Back to Portfolio
+              Back to Photography
             </Link>
 
             {/* Category header */}
